@@ -1,5 +1,3 @@
-console.log("JS funcionando");
-
 const form = document.getElementById("becaForm");
 
 form.addEventListener("submit", async (e) => {
@@ -12,33 +10,14 @@ form.addEventListener("submit", async (e) => {
         carta: form.carta.value
     };
 
-    try {
+    await fetch("https://script.google.com/macros/s/AKfycbxHpfgOvE_7jg5hfbyIdOINqfxyXlJSvMadIxWnCKP1NWUGCqLJvi3F1amjrdeD1m4n/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data)
+    });
 
-        const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbyznKqE_mQbdfbrk72JPZgNGilC5uhNcexWikdYeWem0RJ8dbC71nWbcGjWAeDULRga/exec",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            }
-        );
+    alert("Solicitud enviada");
 
-        const result = await response.text();
-
-        console.log(result);
-
-        alert("Solicitud enviada");
-
-        form.reset();
-
-    } catch (error) {
-
-        console.error("ERROR REAL:", error);
-
-        alert("Error al enviar");
-
-    }
+    form.reset();
 
 });
