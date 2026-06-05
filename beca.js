@@ -4,30 +4,28 @@ form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    const data = {
-        nombre: form.nombre.value,
-        celular: form.celular.value,
-        carta: form.carta.value
-    };
+    const data = new URLSearchParams();
 
-    try{
+    data.append("nombre", form.nombre.value);
+    data.append("celular", form.celular.value);
+    data.append("carta", form.carta.value);
 
-      await fetch(
-    "https://script.google.com/macros/s/AKfycbxrHHcDZR67nDkocHkss4mSI2zUsk54Xwz6fZGl5ES2rfBCx1YFyzJbuM7Fv9EuBHln/exec",
-    {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(data)
-    }
-);
+    try {
+
+        await fetch("https://script.google.com/macros/s/AKfycbxHpfgOvE_7jg5hfbyIdOINqfxyXlJSvMadIxWnCKP1NWUGCqLJvi3F1amjrdeD1m4n/exec", {
+            method: "POST",
+            mode: "no-cors",
+            body: data
+        });
 
         alert("Solicitud enviada correctamente");
 
         form.reset();
 
-    }catch(error){
+    } catch (error) {
 
-        alert("Error al enviar");
+        console.error("Error al enviar:", error);
+        alert("Error al enviar la solicitud");
 
     }
 
