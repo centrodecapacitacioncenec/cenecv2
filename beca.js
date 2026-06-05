@@ -14,7 +14,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        await fetch(
+        const response = await fetch(
             "https://script.google.com/macros/s/AKfycbyznKqE_mQbdfbrk72JPZgNGilC5uhNcexWikdYeWem0RJ8dbC71nWbcGjWAeDULRga/exec",
             {
                 method: "POST",
@@ -25,13 +25,17 @@ form.addEventListener("submit", async (e) => {
             }
         );
 
+        const result = await response.text();
+
+        console.log(result);
+
         alert("Solicitud enviada");
 
         form.reset();
 
     } catch (error) {
 
-        console.error(error);
+        console.error("ERROR REAL:", error);
 
         alert("Error al enviar");
 
