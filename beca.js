@@ -11,17 +11,19 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        await fetch("https://script.google.com/macros/s/AKfycbxHpfgOvE_7jg5hfbyIdOINqfxyXlJSvMadIxWnCKP1NWUGCqLJvi3F1amjrdeD1m4n/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbyznKqE_mQbdfbrk72JPZgNGilC5uhNcexWikdYeWem0RJ8dbC71nWbcGjWAeDULRga/exec", {
             method: "POST",
+            mode: "no-cors",
             body: data
         });
 
         alert("Enviado");
+
         form.reset();
 
     } catch (err) {
         console.error(err);
-        alert("Error");
+        alert("Error al enviar");
     }
 
 });
