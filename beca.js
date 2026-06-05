@@ -1,4 +1,5 @@
 console.log("JS funcionando");
+
 const form = document.getElementById("becaForm");
 
 form.addEventListener("submit", async (e) => {
@@ -13,11 +14,16 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        await fetch("https://script.google.com/macros/s/AKfycbyznKqE_mQbdfbrk72JPZgNGilC5uhNcexWikdYeWem0RJ8dbC71nWbcGjWAeDULRga/exec", {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify(data)
-        });
+        await fetch(
+            "https://script.google.com/macros/s/AKfycbyznKqE_mQbdfbrk72JPZgNGilC5uhNcexWikdYeWem0RJ8dbC71nWbcGjWAeDULRga/exec",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+        );
 
         alert("Solicitud enviada");
 
